@@ -1,0 +1,8 @@
+# IDE
+.idea/
+.code/
+
+.DS_Store
+__pycache__/
+
+.env

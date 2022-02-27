@@ -1,0 +1,9 @@
+id: 1
+name: BOOKINGS_GDS_COLUMN_ADD
+description: Add GDS column to `bookings` table (DEV-1923828)
+migration:
+  - ALTER TABLE bookings ADD COLUMN gds TEXT DEFAULT 'sabre';
+verify:
+  - SELECT * FROM bookings WHERE gds <> 'sabre';
+undo:
+  - ALTER TABLE bookings DROP COLUMN gds;
