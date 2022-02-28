@@ -10,7 +10,7 @@ The migration files are used to determine the schema of the DB
 The `verify` and `undo` section are optional.
 
 ```yaml
-id: 1
+version: 1
 name: Add filter column
 description: DEV-193223
 migration:

@@ -1,6 +1,6 @@
-id: 1
-name: BOOKINGS_GDS_COLUMN_ADD
-description: Add GDS column to `bookings` table (DEV-1923828)
+version: 1
+name: Add filter column
+description: DEV-193223
 migration:
   - ALTER TABLE bookings ADD COLUMN gds TEXT DEFAULT 'sabre';
 verify:
