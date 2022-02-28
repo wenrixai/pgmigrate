@@ -3,7 +3,7 @@ from pathlib import Path
 
 import yaml
 
-from pgmigrate.model import Migration, MigrationCollection, MigrationSchemaValidator
+from src.pgmigrate.model import Migration, MigrationCollection, MigrationSchemaValidator
 
 try:
     from yaml import CLoader as Loader

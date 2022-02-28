@@ -2,8 +2,13 @@
 name = "pgmigrate"
 version = "0.1.0"
 description = "Tool to help manage database schema"
+homepage = "https://github.com/wenrixai/pgmigrate"
+repository = "https://github.com/wenrixai/pgmigrate"
 authors = ["Wenrix"]
 license = "Apache 2.0"
+include = [
+    "LICENSE"
+]
 
 [tool.poetry.dependencies]
 python = "^3.9"
@@ -21,3 +26,7 @@ poetry-dotenv-plugin = "^0.1.0-alpha.2"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+pgmigrate = "pgmigrate.main:cli"
+
