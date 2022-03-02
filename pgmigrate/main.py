@@ -4,10 +4,10 @@ from typing import Optional
 import click
 from attr import attrs, ib
 
-from src.pgmigrate.db import DatabaseFacade, DatabaseMigrationError
-from src.pgmigrate.files import load_migrations
-from src.pgmigrate.logging import Logger
-from src.pgmigrate.model import MigrationCollection, Migration, DatabaseStatus
+from pgmigrate.db import DatabaseFacade, DatabaseMigrationError
+from pgmigrate.files import load_migrations
+from pgmigrate.logging import Logger
+from pgmigrate.model import MigrationCollection, Migration, DatabaseStatus
 
 
 def get_eligible_migrations(

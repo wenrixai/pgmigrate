@@ -1,8 +1,8 @@
 import psycopg2
 from psycopg2.extras import DictCursor
 
-from src.pgmigrate.logging import Logger
-from src.pgmigrate.model import Migration, SchemaHistory, DatabaseStatus
+from pgmigrate.logging import Logger
+from pgmigrate.model import Migration, SchemaHistory, DatabaseStatus
 
 VERSION_TABLE_NAME = "schema_history"
 
