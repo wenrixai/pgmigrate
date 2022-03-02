@@ -56,10 +56,7 @@ class DatabaseFacade:
             if is_started:
                 cursor.execute("SELECT version, timestamp FROM {};".format(VERSION_TABLE_NAME))
 
-                versions = [
-                    SchemaHistory(**x)
-                    for x in cursor.fetchall()
-                ]
+                versions = [SchemaHistory(**x) for x in cursor.fetchall()]
 
         return DatabaseStatus(
             is_started,
