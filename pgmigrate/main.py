@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 from typing import Optional
 
@@ -37,19 +38,13 @@ class Context:
 
 
 @click.group()
-@click.option(
-    "--connection-string",
-    envvar="PGMIGRATE_CONNECTION_STRING",
-    hide_input=True,
-    required=True,
-)
 @click.option("--path", type=click.Path(exists=True), required=True)
 @click.option("--dry-run", is_flag=True, default=False)
 @click.option("--verbose", "-v", is_flag=True, default=False)
 @click.pass_context
-def cli(ctx, verbose, path: Path, connection_string: str, dry_run: bool):
+def cli(ctx, verbose, path: Path, dry_run: bool):
     logger = Logger(verbose)
-    db_facade = DatabaseFacade(connection_string, logger, dry_run=dry_run)
+    db_facade = DatabaseFacade(os.environ["CONNECTION_STRING"], logger, dry_run=dry_run)
     db_facade.connect()
     database_status = db_facade.get_status()
 
