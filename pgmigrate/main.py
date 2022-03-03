@@ -49,8 +49,6 @@ class Context:
 @click.pass_context
 def cli(ctx, verbose, path: Path, connection_string: str, dry_run: bool):
     logger = Logger(verbose)
-
-    ctx.obj.logger = logger
     db_facade = DatabaseFacade(connection_string, logger, dry_run=dry_run)
     db_facade.connect()
     database_status = db_facade.get_status()
