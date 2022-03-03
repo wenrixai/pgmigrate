@@ -30,7 +30,7 @@ def get_eligible_migrations(
 
 @attrs
 class Context:
-    logger: Logger = ib()
+    logger: Logger = ib(default=None)
     migrations_spec = ib(default=None)
     database_status = ib(default=None)
     db_facade = ib(default=None)
@@ -51,10 +51,13 @@ def cli(ctx, verbose, path: Path, connection_string: str, dry_run: bool):
     logger = Logger(verbose)
 
     ctx.obj.logger = logger
-    ctx.obj.migrations_spec = load_migrations(Path(path))
-    ctx.obj.db_facade = DatabaseFacade(connection_string, logger, dry_run=dry_run)
-    ctx.obj.db_facade.connect()
-    ctx.obj.database_status = ctx.obj.db_facade.get_status()
+    db_facade = DatabaseFacade(connection_string, logger, dry_run=dry_run)
+    db_facade.connect()
+    database_status = db_facade.get_status()
+
+    ctx.obj = Context(
+        logger=logger, migrations_spec=load_migrations(Path(path)), db_facade=db_facade, database_status=database_status
+    )
 
 
 @cli.command()
@@ -104,7 +107,7 @@ def info(ctx):
         if len(eligible_migrations) == 0:
             ctx.obj.logger.info("Database is up-to-date")
         else:
-            ctx.obj.logger.info(f"Need to apply versions {[x.id for x in eligible_migrations]}")
+            ctx.obj.logger.info(f"Need to apply versions {[x.version for x in eligible_migrations]}")
 
 
 @cli.command()
