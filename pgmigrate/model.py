@@ -29,9 +29,9 @@ MigrationSchemaValidator = Draft4Validator(
             "version": {"type": "integer", "minimum": 0},
             "name": {"type": "string"},
             "description": {"type": "string"},
-            "migration": {"type": "array", "items": [{"type": "string"}], "minItems": 1, "uniqueItems": True},
-            "verify": {"type": "array", "items": [{"type": "string"}], "minItems": 1, "uniqueItems": True},
-            "undo": {"type": "array", "items": [{"type": "string"}], "minItems": 1, "uniqueItems": True},
+            "migration": {"type": "array", "items": [{"type": "string"}], "minItems": 1},
+            "verify": {"type": "array", "items": [{"type": "string"}], "minItems": 1},
+            "undo": {"type": "array", "items": [{"type": "string"}], "minItems": 1},
         },
         "required": ["version", "name", "description", "migration"],
     }

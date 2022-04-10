@@ -45,7 +45,7 @@ class DatabaseFacade:
 
     def connect(self) -> None:
         self._connection = psycopg2.connect(dsn=self._connection_string, cursor_factory=DictCursor)
-
+        self._connection.autocommit = True
         self._logger.debug("Connected to DB successfully")
 
     def get_status(self) -> DatabaseStatus:
