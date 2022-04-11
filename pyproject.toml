@@ -14,7 +14,7 @@ include = [
 python = "^3.9"
 click = "^8.0.4"
 rich = "^11.2.0"
-PyYAML = "^6.0"
+pyyaml = "~=5.4"
 psycopg2 = "^2.9.3"
 attrs = "^21.4.0"
 jsonschema = "^4.4.0"
@@ -29,4 +29,3 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 pgmigrate = "pgmigrate.main:cli"
-
