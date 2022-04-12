@@ -14,7 +14,7 @@ except ImportError:
 def load_migrations(path: Path) -> MigrationCollection:
     migrations = []
 
-    for file in glob.glob(str(path / "**/*.yml"), recursive=True):
+    for file in glob.glob(str(path / "**/*.yml"), recursive=True) + glob.glob(str(path / "**/*.yaml"), recursive=True):
         loaded = yaml.load(open(file, "r"), Loader=Loader)
         MigrationSchemaValidator.validate(loaded)
 
