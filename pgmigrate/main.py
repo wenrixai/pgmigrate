@@ -44,12 +44,17 @@ class Context:
 @click.pass_context
 def cli(ctx, verbose, path: Path, dry_run: bool):
     logger = Logger(verbose)
+    migrations_spec = load_migrations(Path(path))
+
+    if ctx.invoked_subcommand == "validate":
+        return
+
     db_facade = DatabaseFacade(os.environ["CONNECTION_STRING"], logger, dry_run=dry_run)
     db_facade.connect()
     database_status = db_facade.get_status()
 
     ctx.obj = Context(
-        logger=logger, migrations_spec=load_migrations(Path(path)), db_facade=db_facade, database_status=database_status
+        logger=logger, migrations_spec=migrations_spec, db_facade=db_facade, database_status=database_status
     )
 
 
@@ -101,6 +106,12 @@ def info(ctx):
             ctx.obj.logger.info("Database is up-to-date")
         else:
             ctx.obj.logger.info(f"Need to apply versions {[x.version for x in eligible_migrations]}")
+
+
+@cli.command()
+@click.pass_context
+def validate(ctx):
+    pass
 
 
 @cli.command()
