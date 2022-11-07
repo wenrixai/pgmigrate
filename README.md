@@ -4,6 +4,8 @@
 
 `pip install git+git://github.com/wenrixai/pgmigrate.git` from a private repository
 
+If it's not working try: `pip install git+https://github.com/wenrixai/pgmigrate.git` from a private repository
+
 ## Migration Files
 
 The migration files are used to determine the schema of the DB
